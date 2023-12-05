@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+
+beanie = Product.new(
+  name: "beanie",
+  price: 30,
+  image_url: "https://newstaractive.com/cdn/shop/products/basic_beanie_reversible_49ers_chared_1.jpg?v=1507151403",
+  description: "gray 49ers beanie"
+)
+
+beanie.save
