@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
 
-  def info 
-    @products = Product.first
-    render template: "products/index"
+  def index 
+    render json: {message: "hello"}
   end
 
 end
