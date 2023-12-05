@@ -21,4 +21,8 @@ class ProductsController < ApplicationController
     @product.save
     render template: "products/show"
   end
+
+  def udpate
+    render json: {hi: "hello"}
+  end
 end
