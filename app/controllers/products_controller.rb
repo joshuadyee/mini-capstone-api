@@ -12,7 +12,13 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.last
+    @product = Product.new(
+      name: params[:name],
+      price: params[:price],
+      image_url: params[:image_url],
+      description: params[:description]
+    )
+    @product.save
     render template: "products/show"
   end
 end
