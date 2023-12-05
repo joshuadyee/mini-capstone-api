@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 
   def show
     # p params[:id]
-    @product = Product.find_by(id: params[:id])
+    @@product = Product.find_by(id: params[:id])
     render template: "products/show"
   end
 
@@ -22,7 +22,13 @@ class ProductsController < ApplicationController
     render template: "products/show"
   end
 
-  def udpate
-    render json: {hi: "hello"}
+  def update
+    @product = Product.find_by(id: params[:id])
+    @product.name = params[:name]
+    @product.price = params[:price]
+    @product.image_url = params[:image_url]
+    @product.description = params[:price]
+    @product.save
+    render template: "products/show"
   end
 end
