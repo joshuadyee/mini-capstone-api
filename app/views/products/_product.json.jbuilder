@@ -1,5 +1,5 @@
-json.id jersey.id 
-json.name jersey.name 
-json.price jersey.price
-json.image_url jersey.image_url 
-json.description jersey.description 
+json.id products.id 
+json.name products.name 
+json.price products.price
+json.image_url products.image_url 
+json.description products.description 
