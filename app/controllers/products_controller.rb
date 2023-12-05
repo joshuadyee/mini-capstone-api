@@ -5,4 +5,8 @@ class ProductsController < ApplicationController
     render template: "products/index"
   end
 
+  def show
+    render json: {hi: "hello"}
+    # render template: "products/show"
+  end
 end
