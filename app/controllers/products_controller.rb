@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 
   def show
     # p params[:id]
-    @@product = Product.find_by(id: params[:id])
+    @product = Product.find_by(id: params[:id])
     render template: "products/show"
   end
 
