@@ -16,9 +16,9 @@ class ProductsController < ApplicationController
       name: params[:name],
       price: params[:price],
       image_url: params[:image_url],
-      supplier_id: params[:description],
+      description: params[:description],
       inventory: params[:inventory],
-      supplier_id: params[:supplier_id]
+      supplier: params[:supplier]
     )
 
     if @product.save
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
     @product.image_url = params[:image_url] || @product.image_url
     @product.description = params[:description] || @product.description
     @product.inventory = params[:inventory] || @product.inventory
-    @product.supplier_id = params[:supplier_id] || @product.supplier_id
+    @product.supplier = params[:supplier] || @product.supplier
     
     if @product.save
       render template: "products/show"
