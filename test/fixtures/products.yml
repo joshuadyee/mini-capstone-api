@@ -4,12 +4,12 @@ one:
   name: MyString
   price: 1
   description: MyStringIsGood
-  inventory: MyString
+  inventory: 1
   supplier: 1
 
 two:
   name: MyString
   price: 1
   description: MyStringIsGood
-  inventory: MyString
-  supplier: 1 
+  inventory: 1
+  supplier: one
