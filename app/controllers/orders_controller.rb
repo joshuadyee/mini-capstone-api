@@ -17,26 +17,45 @@ class OrdersController < ApplicationController
   end
   
   def create
-    p "current_user"
-    p current_user.id
-    p "current_user"
-    #subtotal = quantity * price
-    calculated_subtotal = product.price * params[:quantity].to_i
+    # find all items in shopping cart		
+    @carted_products = CartedProduct.where(user_id: current_user.id, status: "carted")
+    # for each item		
+    calculated_subtotal = 0
+    @carted_products.each do |carted_product|
+    #   find quantity	
+    #   find price 	
+    #     finding product id
+    #     find price of that product
+    #   multiply product and price for subtotal	
+    # add all subtotals together		
+      calculated_subtotal += carted_product.quantity * carted_product.product.price
+    end
+  # do math for tax + total		
     calculated_tax = 0.09 * calculated_subtotal
     calculated_total = calculated_subtotal + calculated_tax
 
     @order = Order.new(
       user_id: current_user.id,
-      product_id: params[:product_id],
-      quantity: params[:quantity],
       subtotal: calculated_subtotal,
       tax: calculated_tax,
       total: calculated_total
     )
-    if @order.save
-      render :show
-    else
-      render json: {errors: @order.errors.full_messages}, status: :bad_create
+    @order.save
+    # find all items in shopping_cart
+    @carted_products = CartedProduct.where(user_id: current_user.id, status: "carted")
+    # change all the statuses to "purchased"
+    @carted_products.each do |carted_product|
+      carted_product.status = "purchased"
+      carted_product.order_id = @order.id
+      carted_product.save
     end
+    render :show
+  end
+
+  def destroy
+    @carted_products = CartedProduct.find_by(id: params[:id])
+    @carted_product.status = 'removed'
+    @carted_product.save
+    render json: {message: "item removed"}
   end
 end
